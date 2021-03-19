@@ -3,7 +3,9 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
-var ground
+var engine, world;
+var ground,hammer
+var rubber;
 
 function preload()
 {
@@ -11,16 +13,16 @@ function preload()
 }
 
 function setup() {
-	createCanvas(800, 700);
+	createCanvas(1500, 700);
 
 
 	engine = Engine.create();
 	world = engine.world;
 
 	//Create the Bodies Here.
-	ground=createSprite(700,800,700,800)
-	hammer = new Stone()
-
+	rubber=new Rubber(390,200,60)
+	ground = new Ground(400,400,10000,20);
+	hammer=new Hammer(100,100,50,80)
 
 	Engine.run(engine);
   
@@ -31,7 +33,10 @@ function draw() {
   rectMode(CENTER);
   background(0);
   
-  hammer.display()
+  ground.display();
+  hammer.display();
+  rubber.display();
+  drawSprites();
  
 }
 
